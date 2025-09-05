@@ -28,7 +28,7 @@ p, input, li, table, label {
   color: #2a2a2a;
 }
 
-font[size="7"] {
+.welcome-text {
   font-size: 4rem;
   text-align: center;
   color: white;
@@ -65,7 +65,7 @@ article {
 
 div[class="nav"] {
   height: 50px;
-  background-color: ff80ff;
+  background-color: #ff80ff;
   display: flex;
   padding: 1% 0;
   margin-bottom: 10px;
@@ -177,10 +177,6 @@ audio {
   padding: 10px;
 }
 
-.show-hide {
-  cursor: pointer;
-}
-
 .comments font[size="6"] {
   font-size: 2rem;
 }
@@ -212,6 +208,7 @@ audio {
 .show-hide {
   text-align: center;
   width: 150px;
+  cursor: pointer;
 }
 
 .comment-form input, .comment-form label, .show-hide {
@@ -247,4 +244,8 @@ audio {
 
 .comment-container li p:nth-child(2) {
   flex: 5;
+}
+
+.bottom-spacing {
+  margin-bottom: 1rem;
 }
