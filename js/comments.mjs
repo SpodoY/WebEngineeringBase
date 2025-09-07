@@ -1,3 +1,5 @@
+import {warnSnackbar, errorSnackbar} from "./utils.js";
+
 const showHideBtn = document.querySelector('.show-hide');
 const commentWrapper = document.querySelector('.comment-wrapper');
 const commentForm = document.querySelector('.comment-form');
@@ -30,6 +32,7 @@ export const handleCommentSubmit = (e) => {
 
         if (!name || !comment || name.trim().length === 0 || comment.trim().length === 0) {
             console.warn("Name or comment missing!")
+            warnSnackbar("Name or comment missing!")
             return;
         }
 
@@ -40,6 +43,7 @@ export const handleCommentSubmit = (e) => {
 
     } catch (e) {
         console.error('Error occurred while creating comment:', e);
+        errorSnackbar("Error occurred while creating comment");
     }
 }
 
@@ -62,4 +66,5 @@ if (showHideBtn && commentWrapper && commentForm && commentList && nameField && 
     commentForm.addEventListener('submit', handleCommentSubmit)
 } else {
     console.warn('Comments module: Some DOM elements were not found!')
+    warnSnackbar("Comments module: Some DOM elements were not found!")
 }
