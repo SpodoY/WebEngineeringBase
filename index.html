@@ -20,9 +20,11 @@
             display: block;
         }
     </style>
-    <script src="modules/search.mjs"></script>
-    <script src="modules/bears.mjs"></script>
-    <script src="modules/comments.mjs"></script>
+    <script type="module">
+        import './modules/comments.mjs'
+        import './modules/search.mjs'
+        import './modules/bears.mjs'
+    </script>
 </head>
 <body>
 
@@ -121,23 +123,25 @@
 
         <section class="comments">
             <button class="show-hide" type="button">
-                Show Comments
+                Show comments
             </button>
 
-            <div class="comment-wrapper" style="display: none">
+            <div class="comment-wrapper" style="display: none;">
                 <h2>Add comment</h2>
                 <form class="comment-form">
                     <div class="bottom-spacing">
-                        <label for="name"> Your name: </label>
-                        <input type="text" name="name" id="name" placeholder="Enter your name">
+                        <label for="name">Your name:</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your name" required>
                     </div>
 
                     <div class="bottom-spacing">
-                        <label for="comment"> Your comment: </label>
-                        <input type="text" name="comment" id="comment" placeholder="Enter your comment">
+                        <label for="comment">Your comment:</label>
+                        <input type="text" name="comment" id="comment" placeholder="Enter your comment" required>
                     </div>
 
-                    <input type="button" value="Submit comment">
+                    <div>
+                        <input type="submit" value="Submit comment">
+                    </div>
                 </form>
 
                 <h2>Comments</h2>
