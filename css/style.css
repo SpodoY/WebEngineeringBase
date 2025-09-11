@@ -163,7 +163,7 @@ tbody tr:nth-child(odd) {
 
 img, audio {
   display: block;
-  margin: 0 auto;
+  margin: 0 0;
 }
 
 audio {
@@ -248,4 +248,11 @@ audio {
 
 .bottom-spacing {
   margin-bottom: 1rem;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 1rem;
 }

@@ -24,7 +24,9 @@
     <script type="module">
         import './js/comments.mjs'
         import './js/search.mjs'
-        import './js/bears.mjs'
+        await import ('./js/bears.mjs')
+
+        document.dispatchEvent(new CustomEvent('queryBears'))
     </script>
 </head>
 <body>
@@ -157,7 +159,9 @@
 
         <section class="more_bears">
             <h2>More Bears</h2>
-            <div class="more-bears"> ...Loading more bears</div>
+            <div class="more-bears">
+                <p id="more-bears-loading"> ...Loading more bears </p>
+            </div>
         </section>
     </article>
 
@@ -177,6 +181,6 @@
     <p>©Copyright 2050 by nobody. All rights reversed.</p>
 </footer>
 
-<div id="snackbar">  </div>
+<div id="snackbar"></div>
 </body>
 </html>
