@@ -24,9 +24,9 @@
     <script type="module">
         import './js/comments.mjs'
         import './js/search.mjs'
-        await import ('./js/bears.mjs')
+        import {queryBears} from "./js/bears.mjs";
 
-        document.dispatchEvent(new CustomEvent('queryBears'))
+        queryBears()
     </script>
 </head>
 <body>
