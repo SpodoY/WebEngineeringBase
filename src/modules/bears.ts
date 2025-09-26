@@ -1,13 +1,15 @@
+import type {Bear} from "../types/Bear.js";
+
 const BASE_URL = "https://en.wikipedia.org/w/api.php";
 const TITLE = "List_of_ursids";
 
-export const queryBears = async () => {
+const queryBears = async () => {
 
     const query_params = {
         action: "parse",
         page: TITLE,
         prop: "wikitext",
-        section: 3,
+        section: "3",
         format: "json",
         origin: "*"
     }
@@ -34,13 +36,13 @@ export const queryBears = async () => {
 
         if (loadingMessage) loadingMessage.remove();
 
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(`Failed to fetch bear data: ${error.message}`);
     }
 }
 
-const extractBears = async (wikitext) => {
-    if (!wikitext || typeof wikitext !== "string") {
+const extractBears = async (wikitext: string) => {
+    if (!wikitext) {
         throw new Error('Wikipedia API returned invalid wikitext');
     }
 
@@ -60,7 +62,7 @@ const extractBears = async (wikitext) => {
     return bears;
 }
 
-const extractBear = async (row) => {
+const extractBear = async (row: string): Promise<Bear | undefined> => {
     const nameMatch = row.match(/\|name=\[\[(.*?)\]\]/);
     const binomialMatch = row.match(/\|binomial=(.*?)\n/);
     const imageMatch = row.match(/\|image=(.*?)\n/);
@@ -68,13 +70,13 @@ const extractBear = async (row) => {
     const rangeMatch = row.match(/\|range=([^|\n]*)/);
     const rangeImgMatch = row.match(/\|range-image=([^|\n]*)/);
 
-    if ((nameMatch && binomialMatch && imageMatch)) {
+    if ((nameMatch && binomialMatch && imageMatch && rangeMatch && rangeImgMatch && imageAltMatch && rangeImgMatch && rangeImgMatch)) {
         try {
 
-            const fileName = imageMatch[1].trim().replace('File:', '');
-            const rangeFileName = rangeImgMatch[1].trim().replace('File:', '');
+            const fileName = imageMatch[1]?.trim().replace('File:', '');
+            const rangeFileName = rangeImgMatch[1]?.trim().replace('File:', '');
 
-            const imgAltDesc = imageAltMatch[1].trim();
+            const imgAltDesc = imageAltMatch[1]?.trim();
 
             let imgUrl = null
             let rangeImgUrl = null
@@ -84,19 +86,20 @@ const extractBear = async (row) => {
             if (rangeFileName) rangeImgUrl = await fetchImageFromUrl(rangeFileName);
 
             return {
-                name: nameMatch[1],
-                binomial: binomialMatch[1],
-                image: { url: imgUrl, alt: imgAltDesc},
-                range: { url: rangeImgUrl, desc: rangeMatch[1] }
+                name: nameMatch[1] ?? "",
+                binomial: binomialMatch[1] ?? "",
+                image: { url: imgUrl, alt: imgAltDesc ?? ""},
+                range: { url: rangeImgUrl, desc: rangeMatch[1] ?? "" }
             };
 
-        } catch (error) {
+        } catch (error: any) {
             console.warn(`Failed to process bear data for ${row}: ${error.message}`);
         }
     }
+    return undefined;
 }
 
-const fetchImageFromUrl = async (fileName) => {
+const fetchImageFromUrl = async (fileName: string) => {
     const imageParams = {
         action: "query",
         titles: "File:" + fileName,
@@ -123,12 +126,13 @@ const fetchImageFromUrl = async (fileName) => {
     const pages = data.query.pages
     if (!pages && pages.length) return null;
 
-    const page = Object.values(pages)[0]
+    // I really didn't want to add a type here - sry not sry
+    const page: any = Object.values(pages)[0]
 
     return page.imageinfo[0].url
 }
 
-const renderBears = (bears) => {
+const renderBears = (bears: Bear[]) => {
     const moreBears = document.querySelector('.more-bears');
 
     if (!moreBears) {
@@ -171,4 +175,4 @@ const renderBears = (bears) => {
     })
 }
 
-document.addEventListener('queryBears', queryBears)
+export { queryBears }

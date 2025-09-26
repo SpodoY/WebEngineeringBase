@@ -1,8 +1,8 @@
-import {errorSnackbar, warnSnackbar, successSnackbar} from "./utils.js"
+import {errorSnackbar, warnSnackbar } from "./utils.js"
 
 let searchForm = document.querySelector('#search-form');
 
-export const handleSearch = (event) => {
+export const handleSearch = (event: Event) => {
     event.preventDefault();
 
     try {
@@ -10,7 +10,10 @@ export const handleSearch = (event) => {
         clearHighlights();
 
         console.log(event);
-        const searchKey = event.target.q.value.trim();
+
+        const form = event.target as HTMLFormElement;
+        const searchKey = form.q.value.trim();
+
         if (!searchKey) {
             warnSnackbar("Please enter a search term");
             return;
@@ -36,7 +39,7 @@ const clearHighlights = () => {
     })
 }
 
-const highlightText = (searchKey) => {
+const highlightText = (searchKey: string) => {
     const article = document.querySelector('article');
     if (!article) {
         warnSnackbar("No article found for search");
@@ -54,14 +57,19 @@ const highlightText = (searchKey) => {
     }
 }
 
-const walkTextNodes = (node, regex, onMatch = () => {}) => {
+const walkTextNodes = (node: HTMLElement | ChildNode, regex: RegExp, onMatch = () => {}) => {
+    if (!node.nodeValue) {
+        console.error(`Node ${node.nodeName} has no value`);
+        return;
+    }
+
     if (node.nodeType === Node.TEXT_NODE) {
-        const match = node.nodeValue.match(regex);
+        const match = node.nodeValue?.match(regex);
 
         if (match) {
             const span = document.createElement("span");
             span.innerHTML = node.nodeValue.replace(regex, '<mark class="highlight">$1</mark>');
-            node.replaceWith(...span.childNodes)
+            node.replaceWith(...Array.from(span.childNodes))
             onMatch()
         }
     } else if (node.nodeType === Node.ELEMENT_NODE
@@ -71,5 +79,5 @@ const walkTextNodes = (node, regex, onMatch = () => {}) => {
     }
 }
 
-searchForm = document.querySelector('#search-form');
+searchForm = document.querySelector('#search-form') as HTMLFormElement;
 searchForm.addEventListener('submit', handleSearch)

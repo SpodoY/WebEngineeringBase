@@ -1,15 +1,18 @@
 import {warnSnackbar, errorSnackbar} from "./utils.js";
 
-const showHideBtn = document.querySelector('.show-hide');
-const commentWrapper = document.querySelector('.comment-wrapper');
-const commentForm = document.querySelector('.comment-form');
-const commentList = document.querySelector('.comment-container');
-const nameField = document.querySelector('#name');
-const commentField = document.querySelector('#comment');
+const showHideBtn = document.querySelector('.show-hide') as HTMLButtonElement | null;
+const commentWrapper = document.querySelector('.comment-wrapper') as HTMLElement | null;
+const commentForm = document.querySelector('.comment-form') as HTMLFormElement | null;
+const commentList = document.querySelector('.comment-container') as HTMLElement | null;
+const nameField = document.querySelector('#name') as HTMLInputElement | null;
+const commentField = document.querySelector('#comment') as HTMLInputElement | null;
 
 const handleToggleComments = () => {
     try {
-        const isHidden = commentWrapper.style.display === 'none' || commentWrapper.style.display === '';
+        const isHidden = commentWrapper?.style.display === 'none' || commentWrapper?.style.display === '';
+
+        if (!showHideBtn) throw new Error("No hide button found on class 'show-hide' !")
+        if (!commentWrapper) throw new Error("No comment wrapper found on class 'comment-wrapper' !")
 
         if (isHidden) {
             showHideBtn.textContent = "Hide comments";
@@ -23,8 +26,10 @@ const handleToggleComments = () => {
     }
 }
 
-export const handleCommentSubmit = (e) => {
+export const handleCommentSubmit = (e: Event) => {
     e.preventDefault();
+
+    if (!nameField || !commentField) throw new Error("Name and comment field is required");
 
     try {
         const name = nameField.value;
@@ -47,7 +52,10 @@ export const handleCommentSubmit = (e) => {
     }
 }
 
-const addComment = (name, comment) => {
+const addComment = (name: string, comment: string) => {
+
+    if (!commentList) throw new Error("Comment list is required");
+
     const commentListItem = document.createElement("li");
     const nameParagraph = document.createElement('p');
     const commentParagraph = document.createElement('p');
