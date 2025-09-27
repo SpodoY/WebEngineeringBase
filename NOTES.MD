@@ -41,3 +41,5 @@ import { config } from './config.ts';  // Wrong extension
 ESLint switched their whole config structure moving from v8 to v9 and well lets just say that fucked me up good :').
 The moved to a flattened structure which also caused some trouble with `standard-with-typescript` as apparently it hasn't
 moved to v9 structure yet and doesn't work properly.
+
+If you wanna read about it just go to the [Migration Docs](https://eslint.org/docs/latest/use/migrate-to-9.0.0#flat-config).
