@@ -7,11 +7,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src/**/*.{js,ts}",
-    "lint:fix": "eslint src/**/*.{js,ts} --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "format": "prettier --write src/**/*.{js,ts}",
     "format:check": "prettier --check src/**/*.{js,ts}",
-    "prepare": "husky",
+    "prepare": "husky install",
     "preview": "vite preview"
   },
   "keywords": [],
@@ -29,6 +29,7 @@
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.0",
+    "lint-staged": "^16.2.1",
     "prettier": "^3.6.2",
     "tsx": "^4.20.6",
     "typescript": "^5.9.2",

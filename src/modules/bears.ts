@@ -49,7 +49,7 @@ const extractBears = async (wikitext: string) => {
   }
 
   const speciesTables = wikitext.split('{{Species table/end}}');
-  let bears = [];
+  const bears = [];
 
   for (const tables of speciesTables) {
     const rows = tables.split('{{Species table/row}}');

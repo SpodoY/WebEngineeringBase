@@ -36,3 +36,8 @@ import { utils } from './utils';       // Missing extension
 import { config } from './config.ts';  // Wrong extension
 ```
 > Disclaimer: All code example were generated using AI as some of the research on this question was done with AI 
+
+### ESLint v9
+ESLint switched their whole config structure moving from v8 to v9 and well lets just say that fucked me up good :').
+The moved to a flattened structure which also caused some trouble with `standard-with-typescript` as apparently it hasn't
+moved to v9 structure yet and doesn't work properly.
