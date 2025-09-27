@@ -1,1 +1,1 @@
-export type EventType = "success" | "error" | "info" | "warning"
+export type EventType = 'success' | 'error' | 'info' | 'warning';

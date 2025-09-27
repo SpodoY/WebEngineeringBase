@@ -1,1 +1,1 @@
-echo "I am a pre commit"
+echo "pnpm test"
