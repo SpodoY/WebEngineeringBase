@@ -1,47 +1,38 @@
 import type { EventType } from '../types/EventType.js';
 
+const icons: Record<EventType, string> = {
+  success: '✓',
+  error: '✖',
+  warning: '⚠',
+  info: 'ℹ',
+};
+
 const showSnackbar = (message: string, type: EventType) => {
-  let snackbar = document.querySelector('#snackbar') as HTMLDivElement | null;
+  const snackbar = document.querySelector('#snackbar') as HTMLDivElement | null;
   if (!snackbar) {
     console.error('Snackbar HTML element not found');
     return;
   }
 
-  switch (type) {
-    case 'success':
-      snackbar.style.backgroundColor = '#43a047';
-      break;
-    case 'error':
-      snackbar.style.backgroundColor = '#d50000';
-      break;
-    case 'warning':
-      snackbar.style.backgroundColor = '#ffc107';
-      break;
-    case 'info':
-      snackbar.style.backgroundColor = '#078bff';
-      break;
-    default:
-      snackbar.style.backgroundColor = '#000000';
-      break;
-  }
+  // Reset classes
+  snackbar.className = '';
 
-  snackbar.className = 'show';
-  snackbar.textContent = message;
+  // Add base + type + show
+  snackbar.classList.add('show', type);
 
-  setTimeout(
-    () => (snackbar.className = snackbar.className.replace('show', '')),
-    3000
-  );
+  // Insert icon + text
+  snackbar.innerHTML = `<span class="icon">${icons[type]}</span><span>${message}</span>`;
+
+  // Auto-hide after 3s
+  setTimeout(() => {
+    snackbar.classList.remove('show', type);
+  }, 3000);
 };
 
-export const warnSnackbar = (message: string) => {
+export const warnSnackbar = (message: string) =>
   showSnackbar(message, 'warning');
-};
-
-export const errorSnackbar = (message: string) => {
+export const errorSnackbar = (message: string) =>
   showSnackbar(message, 'error');
-};
-
-export const successSnackbar = (message: string) => {
+export const successSnackbar = (message: string) =>
   showSnackbar(message, 'success');
-};
+export const infoSnackbar = (message: string) => showSnackbar(message, 'info');

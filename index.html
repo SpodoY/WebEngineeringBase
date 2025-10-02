@@ -11,15 +11,6 @@
       body {
           font-family: Arial, sans-serif;
       }
-
-      .highlight {
-          background-color: yellow;
-          color: black;
-      }
-
-      .comment-wrapper {
-          display: block;
-      }
   </style>
   <script type="module" src="./src/index.ts"></script>
 </head>
@@ -118,38 +109,7 @@
       <p> Evan Wild is an unemployed plumber from Doncaster... </p>
     </aside>
 
-    <section class="comments">
-      <button class="show-hide" type="button">
-        Show comments
-      </button>
-
-      <div class="comment-wrapper" style="display: none;">
-        <h2>Add comment</h2>
-        <form class="comment-form">
-          <div class="bottom-spacing">
-            <label for="name">Your name:</label>
-            <input type="text" name="name" id="name" placeholder="Enter your name" required>
-          </div>
-
-          <div class="bottom-spacing">
-            <label for="comment">Your comment:</label>
-            <input type="text" name="comment" id="comment" placeholder="Enter your comment" required>
-          </div>
-
-          <div>
-            <input type="submit" value="Submit comment">
-          </div>
-        </form>
-
-        <h2>Comments</h2>
-        <ul class="comment-container">
-          <li>
-            <p>Bob Fossil</p>
-            <p>Oh I am so glad you taught me all about the big brown angry guys...</p>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <comment-section></comment-section>
 
     <section class="more_bears">
       <h2>More Bears</h2>

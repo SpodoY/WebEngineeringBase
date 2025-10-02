@@ -163,10 +163,10 @@ section to be a web component using shadow dom and templates.
   found [here](https://dev.to/shashwatnautiyal/complete-guide-to-eslint-prettier-husky-and-lint-staged-fh9).
 * Configure **2 Workflows** using GitHub Actions, one for development and one for deployment:
     * (2) Development Workflow should at least lint (optionally test) your code when developers push to a branch named
-      `development`. 
+      `development`. ✅
     * (3) Deployment Workflow is triggered when developers push into `production` branch. It should at least lint and
       build your source code. Afterwards the build artifacts of your application should be automatically deployed to
-      Github Pages (or another hosting provider of your choice).
+      Github Pages (or another hosting provider of your choice). ✅
 
 >
 > _Insert GitHub Pages URL here......_

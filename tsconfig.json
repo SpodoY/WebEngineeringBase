@@ -4,6 +4,10 @@
     // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     // Environment Settings - For nodejs:
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",

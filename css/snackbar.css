@@ -1,40 +1,75 @@
+/* Base snackbar */
 #snackbar {
     visibility: hidden;
-    min-width: 300px;
+    min-width: 280px;
+    max-width: 400px;
     position: fixed;
     bottom: 30px;
-    right: 50%;
-    padding: 1rem;
-    font-size: 2rem;
-    border-radius: 4px;
-    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.9rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     color: white;
+    background: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+
+    opacity: 0;
+    pointer-events: none;
 }
 
+/* Show class */
 #snackbar.show {
     visibility: visible;
-
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    opacity: 1;
+    pointer-events: auto;
+    animation: slideUp 0.5s ease, fadeout 0.5s ease 2.5s forwards;
 }
 
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+/* Type styles */
+#snackbar.success {
+    background: #43a047; /* green */
+}
+#snackbar.error {
+    background: #d50000; /* red */
+}
+#snackbar.warning {
+    background: #ffb300; /* amber */
+    color: #222;
+}
+#snackbar.info {
+    background: #078bff; /* blue */
 }
 
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+/* Icons inside snackbar */
+#snackbar .icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
-@-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+/* Slide animations */
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) translateY(40px);
+        opacity: 0;
+    }
 }
