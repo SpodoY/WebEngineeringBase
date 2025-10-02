@@ -63,3 +63,13 @@ kill me) To be exact this means we not only have to define it in our typescript 
 Oh and because I wanted the `@` import syntax we also added this ony the fly
 
 ![Alt Text](https://media.tenor.com/WTKJwI7PpHUAAAAM/yipee-meme.gif)
+
+### GitHub Pages
+This one was a little confusing as the build initially failed until I came across this stack-overflow discussion which fixed it
+(I had to go to GitHub under `Settings > Pages > Source -> GitHub Action`) and then the deployment failed where I had to
+For the deployment to work (since we don't use the default `github-pages` branch for this) we gotta modify our protection rules.
+
+[GitHub Discussion for the issue](https://github.com/orgs/community/discussions/39054)
+
+To do this go under `Settings > Environments > 'github-pages' and change the allowed branch`
+![GitHub Actions Environment Settings](media/img.png)
