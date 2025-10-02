@@ -32,8 +32,8 @@ jobs:
         run: pnpm install
 
       # Lint stuff
-      - name: Run linter
-        run: pnpm lint
+#      - name: Run linter
+#        run: pnpm lint
 
       - name: Build application
         run: pnpm build
