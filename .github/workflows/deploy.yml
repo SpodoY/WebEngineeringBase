@@ -42,9 +42,9 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        run: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v4
         with:
-          entrypoint: './dist'
+          path: './dist'
 
   deploy:
     name: Deploy to GitHub Pages
