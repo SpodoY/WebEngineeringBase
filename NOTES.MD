@@ -73,3 +73,11 @@ For the deployment to work (since we don't use the default `github-pages` branch
 
 To do this go under `Settings > Environments > 'github-pages' and change the allowed branch`
 ![GitHub Actions Environment Settings](media/img.png)
+
+And since vite expects the wrong path we also have to add the following line in the `vite.config.ts`:
+```typescript
+export default defineConfig({
+  base: '/WebEngineeringBase/',
+  ...
+}
+```

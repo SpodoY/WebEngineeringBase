@@ -168,10 +168,7 @@ section to be a web component using shadow dom and templates.
       build your source code. Afterwards the build artifacts of your application should be automatically deployed to
       Github Pages (or another hosting provider of your choice). ✅
 
->
-> _Insert GitHub Pages URL here......_
->
->
+> GitHub Pages Link: _https://spodoy.github.io/WebEngineeringBase/_
 
 **ESLint Configurations**
 
