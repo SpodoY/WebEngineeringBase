@@ -1,138 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Wildlife Website - Buggy Starter</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/snackbar.css">
-  <style>
+  <head>
+    <meta charset="utf-8" />
+    <title>Wildlife Website - Buggy Starter</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/snackbar.css" />
+    <link rel="stylesheet" href="css/accessability.css" />
+    <style>
       body {
-          font-family: Arial, sans-serif;
+        font-family: Arial, sans-serif;
       }
-  </style>
-  <script type="module" src="./src/index.ts"></script>
-</head>
-<body>
+    </style>
+    <script type="module" src="./src/index.ts"></script>
+  </head>
+  <body>
+    <!-- Navigation skippers for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#search-form" class="skip-link">Skip to search form</a>
 
-<!--
-  BEGIN:
-    Beautiful HTML markup
--->
+    <div class="header" role="banner" aria-label="Welcome banner" tabindex="0">
+      <h1 class="welcome-text">Welcome to our wildlife website</h1>
+    </div>
 
-<div class="header">
-  <h1 class="welcome-text">Welcome to our wildlife website</h1>
-</div>
+    <nav id="navigation" role="navigation" aria-label="main navigation">
+      <ul>
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">Our team</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
 
-<nav>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Our team</a></li>
-    <li><a href="#">Projects</a></li>
-    <li><a href="#">Blog</a></li>
-  </ul>
+      <form
+        class="search"
+        id="search-form"
+        method="get"
+        role="search"
+        aria-label="site search"
+      >
+      <label for="search-query" class="sr-only">Search query</label>
+        <input
+          id="search-query"
+          type="search"
+          name="q"
+          placeholder="Search query"
+          aria-label="Search content on this website"
+          required
+        />
+        <input type="submit" value="Go!" aria-label="submit search" />
+      </form>
+    </nav>
 
+    <main id="main-content" role="main">
+      <article aria-labelledby="article-title">
+        <h1 role="contentinfo" id="article-title">The trouble with Bears</h1>
+        <p>
+          By
+          <span class="author" aria-label="author of the article"
+            >Evan Wild</span
+          >
+        </p>
 
-  <form class="search" id="search-form" method="get">
-    <label>
-      <input type="search" name="q" placeholder="Search query" required>
-    </label>
-    <input type="submit" value="Go!">
-  </form>
-</nav>
+        <p>
+          Tall, lumbering, angry, dangerous. The real live bears of this world
+          are proud, independent creatures, self-serving and always on the hunt
+          for food.
+        </p>
 
-<main>
-  <article>
-    <h1>The trouble with Bears</h1>
-    <p>By Evan Wild </p>
+        <section aria-labelledby="bear-types-heading">
+          <h2 role="contentinfo" id="bear-types-heading">Types of bear</h2>
+          <table role="table" aria-rowcount="2">
+            <caption class="sr-only">
+              Comparison of bear types by their characteristics
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Bear Type</th>
+                <th scope="col">Coat</th>
+                <th scope="col">Adult size</th>
+                <th scope="col">Habitat</th>
+                <th scope="col">Lifespan</th>
+                <th scope="col">Diet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Wild</th>
+                <td>Brown or black</td>
+                <td>1.4 to 2.8 meters</td>
+                <td>Woods and forests</td>
+                <td>25 to 28 years</td>
+                <td>Fish, meat, plants</td>
+              </tr>
+              <tr>
+                <th scope="row">Urban</th>
+                <td>North Face</td>
+                <td>18 to 22</td>
+                <td>Condos and coffee shops</td>
+                <td>20 to 32 years</td>
+                <td>Starbucks, sushi</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
-    <p>
-      Tall, lumbering, angry, dangerous. The real live bears of this world are proud, independent creatures,
-      self-serving and always on the hunt for food.
-    </p>
+        <section aria-labelledby="bear-habitats-heading">
+          <h2 role="contentinfo" id="bear-habitats-heading">
+            Habitats and Eating habits
+          </h2>
+          <p>
+            Wild bears eat a variety of meat, fish, fruit, nuts, and other
+            natually growing ingredients...
+          </p>
 
-    <h2>Types of bear</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Bear Type</th>
-        <th>Coat</th>
-        <th>Adult size</th>
-        <th>Habitat</th>
-        <th>Lifespan</th>
-        <th>Diet</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Wild</td>
-        <td>Brown or black</td>
-        <td>1.4 to 2.8 meters</td>
-        <td>Woods and forests</td>
-        <td>25 to 28 years</td>
-        <td>Fish, meat, plants</td>
-      </tr>
-      <tr>
-        <td>Urban</td>
-        <td>North Face</td>
-        <td>18 to 22</td>
-        <td>Condos and coffee shops</td>
-        <td>20 to 32 years</td>
-        <td>Starbucks, sushi</td>
-      </tr>
-      </tbody>
-    </table>
+          <figure>
+            <img src="media/wild-bear.jpg" alt="Wild bear in forest" />
+            <figcaption class="sr-only">Wild bear in forest</figcaption>
+          </figure>
 
-    <h2>Habitats and Eating habits</h2>
+          <p>
+            Urban (gentrified) bears on the other hand have largely abandoned
+            the old ways...
+          </p>
 
-    <p> Wild bears eat a variety of meat, fish, fruit, nuts, and other natually growing ingredients... </p>
+          <figure>
+            <img src="media/urban-bear.jpg" alt="Urban bear near buildings" />
+            <figcaption class="sr-only">Urban bear near buildings</figcaption>
+          </figure>
+        </section>
 
-    <img src="media/wild-bear.jpg" alt="Wild bear in forest">
+        <section aria-labelledby="bear-mating-heading">
+          <h2 role="contentinfo" id="bear-mating-heading">Mating rituals</h2>
 
-    <p> Urban (gentrified) bears on the other hand have largely abandoned the old ways... </p>
+          <p>Bears are romantic creatures by nature...</p>
 
-    <img src="media/urban-bear.jpg" alt="Urban bear near buildings">
+          <figure>
+            <figcaption class="sr-only">Bear mating rituals</figcaption>
+            <audio controls aria-label="Bear mating call audio recording">
+              <source src="media/bear.mp3" type="audio/mp3" />
+              <source src="media/bear.ogg" type="audio/ogg" />
+              <track src="media/bear.vtt" kind="captions" label="English" srclang="en" />
+              <p>
+                It looks like your browser doesn't support HTML5 audio players.
+                <a href="media/bear.mp3" download>Download audio file</a>
+                instead.
+              </p>
+            </audio>
+          </figure>
+        </section>
 
-    <h2>Mating rituals</h2>
+        <aside aria-labelledby="author-heading" role="complementary">
+          <h2 id="author-heading">About the author</h2>
+          <p>Evan Wild is an unemployed plumber from Doncaster...</p>
+        </aside>
 
-    <p>Bears are romantic creatures by nature...</p>
+        <comment-section></comment-section>
 
-    <audio controls>
-      <source src="media/bear.mp3" type="audio/mp3">
-      <source src="media/bear.ogg" type="audio/ogg">
-      <p>It looks like your browser doesn't support HTML5 audio players.</p>
-    </audio>
+        <section class="more_bears" aria-labelledby="more-bears-heading">
+          <h2 id="more-bears-heading">More Bears</h2>
+          <div
+            class="more-bears"
+            role="region"
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <p id="more-bears-loading">...Loading more bears</p>
+          </div>
+        </section>
+      </article>
 
-    <aside>
-      <h2>About the author</h2>
-      <p> Evan Wild is an unemployed plumber from Doncaster... </p>
-    </aside>
+      <aside
+        class="secondary"
+        role="complementary"
+        aria-labelledby="realted-heading"
+      >
+        <h2 id="realted-heading">Related</h2>
+        <nav aria-label="related-articles" class="aside-link-container">
+          <ul>
+            <li><a href="#">The trouble with Bees</a></li>
+            <li><a href="#">The trouble with Otters</a></li>
+            <li><a href="#">The trouble with Penguins</a></li>
+            <li><a href="#">The trouble with Octopi</a></li>
+            <li><a href="#">The trouble with Lemurs</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
 
-    <comment-section></comment-section>
+    <footer role="contentinfo">
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
 
-    <section class="more_bears">
-      <h2>More Bears</h2>
-      <div class="more-bears">
-        <p id="more-bears-loading"> ...Loading more bears </p>
-      </div>
-    </section>
-  </article>
-
-  <aside class="secondary">
-    <h2>Related</h2>
-    <ul>
-      <li><a href="#">The trouble with Bees</a></li>
-      <li><a href="#">The trouble with Otters</a></li>
-      <li><a href="#">The trouble with Penguins</a></li>
-      <li><a href="#">The trouble with Octopi</a></li>
-      <li><a href="#">The trouble with Lemurs</a></li>
-    </ul>
-  </aside>
-</main>
-
-<footer>
-  <p>©Copyright 2050 by nobody. All rights reversed.</p>
-</footer>
-
-<div id="snackbar"></div>
-</body>
+    <div id="snackbar" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
 </html>

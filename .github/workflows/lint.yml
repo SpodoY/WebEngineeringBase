@@ -9,6 +9,7 @@ jobs:
   run-linter:
     name: Setup pnpm and run linter
     runs-on: ubuntu-latest
+    
     steps:
       - name: Check out git repository
         uses: actions/checkout@v5

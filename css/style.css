@@ -67,7 +67,7 @@ nav ul li a:hover {
 }
 
 .search input[type="submit"] {
-  background: #5a8f63;
+  background: #436b4a;
   color: white;
   border: none;
   padding: 0.4rem 0.8rem;
@@ -78,7 +78,7 @@ nav ul li a:hover {
 }
 
 .search input[type="submit"]:hover {
-  background: #49724f;
+  background: #395e3d;
 }
 
 /* Layout */
@@ -133,6 +133,14 @@ article img {
 }
 
 /* Aside */
+.aside-link-container > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+  width: 100%;
+}
+
 aside {
   background: #f9f9f9;
   padding: 1rem;

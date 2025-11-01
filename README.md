@@ -211,30 +211,44 @@ Additionally, refactor your project by encapsulating the comments section into a
 ### Tasks
 
 * Accessibility Checks:
-    * (2) **Color**: Test the current color contrast (text/background), report the results of the test, and then fix
-      them by changing the assigned colors.
+    * (2) **Color**: Test the current color contrast (text/background), report the results of the test, and then fix ✅
+      them by changing the assigned colors. 
     * (2) **Semantic HTML**: Report on what happens when you try to navigate the page using a screen reader. Fix those
-      navigation issues.
+      navigation issues. ✅
     * (2) **Audio**: The ``<audio>`` player isn't accessible to hearing impaired people — can you add some kind of
       accessible alternative for these users?
     * (2) **Forms**:
         * The ``<input>`` element in the search form at the top could do with a label, but we don't want to add a
           visible text label that would potentially spoil the design and isn't really needed by sighted users. Fix this
-          issue by adding a label that is only accessible to screen readers.
+          issue by adding a label that is only accessible to screen readers. ✅
         * The two ``<input>`` elements in the comment form have visible text labels, but they are not unambiguously
           associated with their labels — how do you achieve this? Note that you'll need to update some of the CSS rule
-          as well.
+          as well. ✅
     * (2) **Comment Section**: The show/hide comment control button is not currently keyboard-accessible. Can you make
-      it keyboard accessible, both in terms of focusing it using the tab key, and activating it using the return key?
+      it keyboard accessible, both in terms of focusing it using the tab key, and activating it using the return key? ✅
     * (4) **The table**: The data table is not currently very accessible — it is hard for screen reader users to
       associate data rows and columns together, and the table also has no kind of summary to make it clear what it
-      shows. Can you add some features to your HTML to fix this problem?
+      shows. Can you add some features to your HTML to fix this problem? ✅
 
 * (6) Create a web component for the "Add comment" section. Use te shadow DOM and <code>template</code> syntax to
-  encapsulate all related styles inside the component.
+  encapsulate all related styles inside the component. ✅
 
 >
-> _Present your findings here..._
+> ### Color Contrast
+> Since I already re-did the css in playground #2 most of the color contrast issues are already fixed. However, I found one issue with the Go! button in the search form. The color contrast was only at 3.8:1 instead of 4.5:1. Since wave pointed it out for me, it was an easy fix just toning down the button color and it's hover state.
+> ### Semantic HTML
+> I had quite some issues navigating the page. A lot of stuff had no helpful text for screen readers or was just not focusable at all. I also
+> had some weird focus order with the audio player often being the first element in the tab order. It's also hard to navigate without to the main content without having to tab through the navigation. I fixed all of that by adding a skip link to the top of the page and adding some focus styles to the elements. I also added a few aria-labels to make it a bit more clear what the elements are for. The most used aria-labels I used are `aria-label`, `aria-labelledby` and `role`. To read up more about roles and aria-labels you can check out [MDN's documentation](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles). One last thing I noticed was that there is a difference in detail when navigating using tab vs using the arrow keys. One weird thing is the aria-required attribute on the name input field as I thought just required was enough...?
+> To round off all those changes I also added some information in my `.ts` files for the comment section (yes I skipped the bears file)
+> ### Audio
+> 
+> ### Forms
+> I basically just added a `role="form"` to the form element and added `aria-labelledby` to the search form. I also put some `<label>` elements in the comment form to make it clear what the fields are for and referenced them using `aria-labelledby` and `aria-describedby` and `ref` attributes.
+> ### Comment Section
+> I already created a shadow-component in Playground #2 and just added aria-labels where I saw fit. I also added a `tabindex="0"` to the comments so you can tab through them. Apart from that... nothing special.
+> ### The table
+> To make a better experience using the table I first added a `role="table"` to the table element and a caption that is only visible to screen readers. All `<th>` elements got a `scope="col"` attribute and each first element in a `<tr>` got a `scope="row"` attribute and became `<th scope="row">`. I also added `aria-rowcount="2"` to the table to make it clear that there are two rows in the table. The section of the table also got a description using the `h2` and `aria-labelledby` attributes.
+> 
 >
 
 ## 4. Migrate to a Frontend Framework

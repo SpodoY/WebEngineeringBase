@@ -96,9 +96,11 @@ class CommentSection extends HTMLElement {
       if (isHidden) {
         this.showHideBtn.textContent = 'Hide comments';
         this.commentWrapper.style.display = 'block';
+        this.showHideBtn.setAttribute('aria-expanded', 'true');
       } else {
         this.showHideBtn.textContent = 'Show comments';
         this.commentWrapper.style.display = 'none';
+        this.showHideBtn.setAttribute('aria-expanded', 'false');
       }
     } catch (error) {
       console.error('Toggle comments error:', error);
@@ -142,6 +144,11 @@ class CommentSection extends HTMLElement {
     const commentListItem = document.createElement('li');
     const nameParagraph = document.createElement('p');
     const commentParagraph = document.createElement('p');
+
+    commentListItem.setAttribute('tabindex', '0');
+    commentListItem.setAttribute('role', 'listitem');
+    commentListItem.setAttribute('aria-label', `Comment by ${name}`);
+    commentListItem.setAttribute('aria-live', 'polite');
 
     nameParagraph.textContent = name;
     commentParagraph.textContent = comment;
