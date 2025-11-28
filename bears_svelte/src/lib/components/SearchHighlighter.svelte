@@ -12,7 +12,6 @@
   searchActive.subscribe(v => active = v);
 
   $effect(() => {
-    console.log("triggered", q, active);
     if (!active) return;
 
     clearHighlights();

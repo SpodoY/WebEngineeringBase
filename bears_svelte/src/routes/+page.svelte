@@ -1,6 +1,10 @@
 <script lang="ts">
   import CommentSection from '$lib/components/CommentSection.svelte';
   import SearchHighlighter from '$lib/components/SearchHighlighter.svelte';
+  import MoreBearsSection from '$lib/components/MoreBearsSection.svelte';
+  import type { PageProps } from '../../.svelte-kit/types/src/routes/$types';
+
+  let { data }: PageProps = $props();
 </script>
 
 <main id="main-content">
@@ -108,17 +112,7 @@
 
     <CommentSection />
 
-    <section class="more_bears" aria-labelledby="more-bears-heading">
-      <h2 id="more-bears-heading">More Bears</h2>
-      <div
-        class="more-bears"
-        role="region"
-        aria-busy="true"
-        aria-live="polite"
-      >
-        <p id="more-bears-loading">...Loading more bears</p>
-      </div>
-    </section>
+    <MoreBearsSection bears={data.bears} />
   </article>
 
   <aside
