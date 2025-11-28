@@ -1,0 +1,64 @@
+<section class="comments" aria-label="comments-heading">
+  <h2 id="comments-heading">Comments Section</h2>
+
+  <button
+    class="show-hide"
+    type="button"
+    aria-expanded="false"
+    aria-controls="comment-wrapper"
+  >
+    Show comments
+  </button>
+
+  <div
+    class="comment-wrapper"
+    style="display: none"
+    role="region"
+    aria-label="comments section"
+  >
+    <h3 id="add-comment-heading">Add comment</h3>
+    <form class="comment-form" aria-labelledby="add-comment-heading">
+      <div class="bottom-spacing">
+        <label for="name">Your name:</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter your name"
+          aria-required="true"
+          required
+        />
+      </div>
+
+      <div class="bottom-spacing">
+        <label for="comment">Your comment:</label>
+        <input
+          type="text"
+          name="comment"
+          id="comment"
+          placeholder="Enter your comment"
+          aria-required="true"
+          aria-describedby="comment-help"
+          required
+        />
+        <span id="comment-help" class="sr-only"
+          >Enter your thoughts about the article</span
+        >
+      </div>
+
+      <div>
+        <input type="submit" value="Submit comment" aria-label="Submit your comment" />
+      </div>
+    </form>
+
+    <h3 id="comments-list-heading">Comments</h3>
+    <ul class="comment-container" role="list" aria-live="polite">
+      <li role="listitem" aria-label="Comment by Bob Fossil" tabindex="0">
+        <p>Bob Fossil</p>
+        <p>
+          Oh I am so glad you taught me all about the big brown angry guys...
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+/* Base snackbar */
+#snackbar {
+    visibility: hidden;
+    min-width: 280px;
+    max-width: 400px;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.9rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: white;
+    background: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Show class */
+#snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    animation: slideUp 0.5s ease, fadeout 0.5s ease 2.5s forwards;
+}
+
+/* Type styles */
+#snackbar.success {
+    background: #43a047; /* green */
+}
+#snackbar.error {
+    background: #d50000; /* red */
+}
+#snackbar.warning {
+    background: #ffb300; /* amber */
+    color: #222;
+}
+#snackbar.info {
+    background: #078bff; /* blue */
+}
+
+/* Icons inside snackbar */
+#snackbar .icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* Slide animations */
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) translateY(40px);
+        opacity: 0;
+    }
+}
