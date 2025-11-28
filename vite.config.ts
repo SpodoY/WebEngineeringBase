@@ -1,14 +1,8 @@
+import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
 
 export default defineConfig({
-  base: '/WebEngineeringBase/',
-  resolve: {
-    alias: {
-      '@': resolve(
-        __dirname,
-        './src'
-      ) /* This beauty gave me the good stuff 😫🍆 */,
-    },
-  },
+	plugins: [tailwindcss(), sveltekit()],
+	base: '/WebEngineeringBase/',
 });
