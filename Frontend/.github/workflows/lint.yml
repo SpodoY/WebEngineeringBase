@@ -1,0 +1,37 @@
+name: Development Pipeline
+run-name: ${{ github.actor }} triggered development pipline
+on:
+  push:
+    branches:
+      - 'development'
+
+jobs:
+  run-linter:
+    name: Setup pnpm and run linter
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out git repository
+        uses: actions/checkout@v5
+
+      # Uses version defined in `package.json` since packageManager field ist set :)
+      # We also don't run pnpm install here as we wait 4 node 4 the caching :D
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      # We can use this since we specified the node version in the engines part of `package.json`
+      # V5 also caches by default so we just provide cache: 'pnpm'
+      # https://github.com/actions/setup-node
+      - name: Install Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: 'package.json'
+          cache: 'pnpm'
+
+      # Now we install - Cause now we caching real good uwu
+      - name: Install dependencies
+        run: pnpm install
+
+      # Lint stuff
+      - name: Run linter
+        run: pnpm lint
