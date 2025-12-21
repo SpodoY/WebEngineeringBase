@@ -1,6 +1,6 @@
-@Backend_HostAddress = http://localhost:5007
+@Backend_HostAddress = http://localhost:5007/api/v1
 
-GET {{Backend_HostAddress}}/bears/
+GET {{Backend_HostAddress}}/bears
 Accept: application/json
 
 ###

@@ -32,3 +32,4 @@ D:\Data\FH Campus Wien\Master Projekte\Sem3\WebEngineeringBase\Backend\obj\Debug
 D:\Data\FH Campus Wien\Master Projekte\Sem3\WebEngineeringBase\Backend\obj\Debug\net10.0\Backend.genruntimeconfig.cache
 D:\Data\FH Campus Wien\Master Projekte\Sem3\WebEngineeringBase\Backend\obj\Debug\net10.0\ref\Backend.dll
 D:\Data\FH Campus Wien\Master Projekte\Sem3\WebEngineeringBase\Backend\bin\Debug\net10.0\Scalar.AspNetCore.dll
+D:\Data\FH Campus Wien\Master Projekte\Sem3\WebEngineeringBase\Backend\obj\Debug\net10.0\Backend.sourcelink.json

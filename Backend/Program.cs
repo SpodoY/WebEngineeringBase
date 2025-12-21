@@ -4,6 +4,12 @@ using Backend.Services;
 using Backend.Services.Interfaces;
 using Scalar.AspNetCore;
 
+#region AppParams
+
+var corsPolicyName = "_corsPolicy";
+
+#endregion
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,7 +20,14 @@ builder.Services.AddOpenApi();
 // for example Secrets.json, appsettings.json or any other like azure app config, etc.
 var config = builder.Configuration;
 
-var section = config.GetSection("WikipediaSettings");
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: corsPolicyName,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod();
+        });
+});
 
 builder.Services.Configure<WikipediaSettings>(config.GetSection("WikipediaSettings"));
 
@@ -29,10 +42,14 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 }
 
+app.UseCors(corsPolicyName);
+
 app.UseHttpsRedirection();
 
-// Map MinimalApi Endpoints through extension methods
-app.MapBearWikiEndpoints();
+// Map MinimalApi Endpoints through extension methods by first registering /api/v1 as base Path and then using
+// `MapBearWikiEndpoints` to register endpoints defined in there resulting in /api/v1/bears
+var apiV1 = app.MapGroup("/api/v1");
+apiV1.MapBearWikiEndpoints();
 
 // Left in starter code to showcase how this can be done
 // app.MapGet("/weatherforecast", () =>

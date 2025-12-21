@@ -2,9 +2,19 @@
   import CommentSection from '$lib/components/CommentSection.svelte';
   import SearchHighlighter from '$lib/components/SearchHighlighter.svelte';
   import MoreBearsSection from '$lib/components/MoreBearsSection.svelte';
-  import type { PageProps } from '../../.svelte-kit/types/src/routes/$types';
+  import { onMount } from 'svelte';
+	import { queryBears } from '$lib/utils/bears';
+	import type { Bear } from '$lib/types/Bear';
 
-  let { data }: PageProps = $props();
+  let data: Bear[] | null = null;
+  onMount(async () => {
+    const bears = await queryBears();
+
+    if (bears) data = bears;
+    else data = [];
+  })
+
+  
 </script>
 
 <main id="main-content">
@@ -112,7 +122,7 @@
 
     <CommentSection />
 
-    <MoreBearsSection bears={data.bears} />
+    <MoreBearsSection bears={data} />
   </article>
 
   <aside

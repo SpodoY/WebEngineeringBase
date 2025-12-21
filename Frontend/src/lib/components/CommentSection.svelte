@@ -107,12 +107,6 @@
     color: #2f4f35;
 }
 
-.comments-heading {
-    margin-top: 1rem;
-    margin-bottom: 0.6rem;
-    color: #2f4f35;
-}
-
 /* Comment List */
 .comment-container {
     list-style: none;

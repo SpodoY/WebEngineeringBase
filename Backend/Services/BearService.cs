@@ -46,9 +46,9 @@ public class BearService : IBearService
 
         try
         {
-            var bearsResponse = await _httpClient.GetFromJsonAsync<BearResponseDTO>("https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ursids&prop=wikitext&section=3&format=json");
-            //     QueryHelpers.AddQueryString("", query!)
-            // );
+            var bearsResponse = await _httpClient.GetFromJsonAsync<BearResponseDTO>(
+                QueryHelpers.AddQueryString("", query!)
+            );
 
             if (bearsResponse is null)
             {
@@ -74,7 +74,7 @@ public class BearService : IBearService
 
         foreach (var species in speciesTable)
         {
-            var rows = species.Split("{{Species table/row}}");
+            var rows = species.Split("{{Species table/row");
 
             foreach (var bearRow in rows)
             {
@@ -90,8 +90,8 @@ public class BearService : IBearService
     {
         var nameMatch = Regex.Match(bear, @"\|name=\[\[(.*?)\]\]");
         var binomialMatch = Regex.Match(bear, @"\|binomial=(.*?)\n");
-        var imageMatch = Regex.Match(bear, @"\|image=(.*?)\n");
-        var imageAltMatch = Regex.Match(bear, @"\|image-alt=(.*?)\n");
+        var imageMatch = Regex.Match(bear, @"\|image=([^|\n]*)");
+        var imageAltMatch = Regex.Match(bear, @"\|image-alt=([^|\n]*)");
         var rangeMatch = Regex.Match(bear, @"\|range=([^|\n]*)");
         var rangeImgMatch = Regex.Match(bear, @"\|range-image=([^|\n]*)");
 
@@ -137,7 +137,7 @@ public class BearService : IBearService
                     },
                     Range = new BearRange
                     {
-                        Url = rangeImgUrl,
+                        Url = rangeImgUrl ?? "",
                         Description = rangeMatch.Groups[1].Value ?? string.Empty
                     }
                 };

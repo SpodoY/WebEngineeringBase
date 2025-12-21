@@ -1,6 +1,4 @@
-﻿using Backend.Models.DTO;
-using Backend.Services.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Backend.Services.Interfaces;
 
 namespace Backend.Endpoints;
 
@@ -8,7 +6,7 @@ public static class BearWikiEndpoints
 {
     public static void MapBearWikiEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("/bears").WithTags("Bears");
+        var group = builder.MapGroup("bears").WithTags("Bears");
 
         group.MapGet("/", async (IBearService bearService) =>
         {
