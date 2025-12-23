@@ -6,7 +6,7 @@ using Scalar.AspNetCore;
 
 #region AppParams
 
-var corsPolicyName = "_corsPolicy";
+var corsPolicyName = "CorsPolicy";
 
 #endregion
 
@@ -19,13 +19,16 @@ builder.Services.AddOpenApi();
 // Registers the Settings Object for DI using the "pool" of Configurations available
 // for example Secrets.json, appsettings.json or any other like azure app config, etc.
 var config = builder.Configuration;
+var corsOrigins = config.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: corsPolicyName,
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod();
+            policy.WithOrigins(corsOrigins)
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         });
 });
 
