@@ -16,6 +16,8 @@ services:
       expose:
         - "8080" # http
         - "8081" # https
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Production
   proxy:
     container_name: proxy
     image: nginx:alpine
