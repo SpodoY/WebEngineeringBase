@@ -6,7 +6,7 @@ using Scalar.AspNetCore;
 
 #region AppParams
 
-var corsPolicyName = "CorsPolicy";
+const string corsPolicyName = "CorsPolicy";
 
 #endregion
 
